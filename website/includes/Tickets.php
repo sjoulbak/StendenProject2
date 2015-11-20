@@ -214,24 +214,24 @@ class Tickets {
                 <p>Voor u uw vraag stelt kunt u ook kijken of uw vraag hier tussenstaat.
                     Zo voorkom je dat je moet wachten op je vraag!
               <ul>
-                <li id="question">Wanneer kan ik antwoord verwachten?<i class="fa fa-angle-down"></i></li>
-                <li id="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis eu felis vel pellentesque.
+                <li class="question">Wanneer kan ik antwoord verwachten?<i class="fa fa-angle-down"></i></li>
+                <li class="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis eu felis vel pellentesque.
                          Maecenas a mattis augue.
                         Nullam mollis scelerisque elit ut iaculis. Nullam sit amet tincidunt ex. </li>
-                    <li id="question">Wat houdt de prioriteit in en wat vul ik daar in?<i class="fa fa-angle-down"></i></li>
-                  <li id="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis eu felis vel pellentesque.
+                    <li class="question">Wat houdt de prioriteit in en wat vul ik daar in?<i class="fa fa-angle-down"></i></li>
+                  <li class="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis eu felis vel pellentesque.
                              Maecenas a mattis augue.
                             Nullam mollis scelerisque elit ut iaculis. Nullam sit amet tincidunt ex. </li>
-                    <li id="question">Hoe weet ik naar welke afdeling mijn probleem moet?<i class="fa fa-angle-down"></i></li>
-                  <li id="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis eu felis vel pellentesque.
+                    <li class="question">Hoe weet ik naar welke afdeling mijn probleem moet?<i class="fa fa-angle-down"></i></li>
+                  <li class="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis eu felis vel pellentesque.
                                  Maecenas a mattis augue.
                                 Nullam mollis scelerisque elit ut iaculis. Nullam sit amet tincidunt ex. </li>
-                    <li id="question">Ik kan niet inloggen wat kan ik nu doen?<i class="fa fa-angle-down"></i></li>
-                    <li id="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis eu felis vel pellentesque.
+                    <li class="question">Ik kan niet inloggen wat kan ik nu doen?<i class="fa fa-angle-down"></i></li>
+                    <li class="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis eu felis vel pellentesque.
                              Maecenas a mattis augue.
                             Nullam mollis scelerisque elit ut iaculis. Nullam sit amet tincidunt ex. </li>
-                    <li id="question">Hoe kan ik me afmelden voor de helpservice?<i class="fa fa-angle-down"></i></li>
-                    <li id="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis eu felis vel pellentesque.
+                    <li class="question">Hoe kan ik me afmelden voor de helpservice?<i class="fa fa-angle-down"></i></li>
+                    <li class="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis eu felis vel pellentesque.
                              Maecenas a mattis augue.
                                 Nullam mollis scelerisque elit ut iaculis. Nullam sit amet tincidunt ex. </li>
               </ul>
