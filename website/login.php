@@ -93,34 +93,6 @@ if($security->checksession()){
                                 <input class="form-styling" type="hidden" name="remember" ng-model="remember" placeholder="{{ data.cb1 }}" />
                             </div>
                         </form>
-                    <?php
-//                    if($_POST){
-//                        $username = $_POST['username'];
-//                        $password = md5($_POST['password']);
-//                        $conn = mysqli_connect("localhost","root","root", "Ehelp");
-//
-//                        if (!$conn) {
-//                            die("Can not Connect:" .mysql_error());
-//                        }
-//                        $query = "SELECT * FROM login WHERE username = '$username' AND password ='$password'";
-//                        $result = mysqli_query($conn, $query);
-//                        if ($result) {
-//                            $row = mysqli_fetch_array($result);
-//                        }
-//                        if ($username == $row["username"] & $password == $row["password"]) {
-//                            $_SESSION['username'] = $username;
-//                            $_SESSION['id'] = $userId;
-//                            $_SESSION['time']   = time();
-//                            ?>
-<!--                            <script>window.location = "../Home/index.php";</script>-->
-<!--                            --><?php
-//                            exit();
-//                        }
-//                        else{
-//                            echo "Username and or password incorrect.";
-//                        }
-//                    }
-                    ?>
                     </div>
                 </div>
             </div>

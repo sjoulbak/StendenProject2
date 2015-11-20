@@ -37,7 +37,7 @@ class Security{
     public function logout(){
 
         unset($_SESSION['alfa-workshops']);
-        $this->core->loadPage("index.php");
+        $this->core->loadPage("login.php");
     }
     public function checkLogin($user, $pass){
         $user = $this->db->esc_str($user);

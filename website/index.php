@@ -1,3 +1,24 @@
+
+<?php
+
+session_start();
+
+require_once("includes/Core.php");
+require_once("includes/Database.php");
+require_once("includes/Security.php");
+$core = new Core();
+$db = new Database();
+$db->opendb();
+$security = new Security($core, $db);
+$user = $security->checksession();
+if(!$user){
+    $core->loadPage("login.php");
+}
+
+if(isset($_GET['logout'])){
+    $security->logout();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,9 +63,9 @@
       <div id="logo"></div>
       <div id="menu_bar">
         <ul class="menu">
-          <li class=""><md-button class="menu_item" href="http://google.com">Home</md-button></li>
-          <li class=""><md-button class="menu_item" href="http://google.com">Tickets</md-button></li>
-          <li class=""><md-button class="menu_item" href="http://google.com">Help</md-button></li>
+          <li class=""><md-button class="menu_item" href="?">Home</md-button></li>
+          <li class=""><md-button class="menu_item" href="?">Tickets</md-button></li>
+          <li class=""><md-button class="menu_item" href="?help">Help</md-button></li>
         </ul>
       </div>
 		</div>
@@ -53,9 +74,9 @@
         <div id="avatar"></div>
             <div id="username">
 
-        <?php
-          echo "Tom Drent";
-        ?>
+            <?php
+              echo $user['firstname']." ".$user['lastname'];
+            ?>
         </div>
 
 
@@ -70,9 +91,9 @@
           </md-button>
 
           <md-menu-content >
-              <md-menu-item><md-button ng-click="doSomething()" href="logout.php"><md-icon md-svg-icon="svg/ic_account_box_black_24px.svg"></md-icon>My Profile</md-button></md-menu-item>
-              <md-menu-item><md-button ng-click="doSomething()" href="logout.php"><md-icon md-svg-icon="svg/ic_settings_black_24px.svg"></md-icon>Settings</md-button></md-menu-item>
-              <md-menu-item><md-button ng-click="doSomething()" href="logout.php"><md-icon md-svg-icon="svg/ic_exit_to_app_black_24px.svg"></md-icon>Logout</md-button></md-menu-item>
+              <md-menu-item><md-button ng-click="doSomething()" href="?logout"><md-icon md-svg-icon="svg/ic_account_box_black_24px.svg"></md-icon>My Profile</md-button></md-menu-item>
+              <md-menu-item><md-button ng-click="doSomething()" href="?logout"><md-icon md-svg-icon="svg/ic_settings_black_24px.svg"></md-icon>Settings</md-button></md-menu-item>
+              <md-menu-item><md-button ng-click="doSomething()" href="?logout"><md-icon md-svg-icon="svg/ic_exit_to_app_black_24px.svg"></md-icon>Logout</md-button></md-menu-item>
           </md-menu-content>
         </md-menu>
 
@@ -82,11 +103,21 @@
 </toolbar-top>
 	<!-- main content -->
 	<div id="content"flex ng-view class="flex ng-scope">
-    <div id="content_top"><h2>Tickets(9)</h2><span><a href="#" style="color:#0cc2aa;">Home</a>  / Tickets</span></div>
+    <div id="content_top"><h2>Tickets(<?php echo $user['tickets']; ?>)</h2><span><a href="#" style="color:#0cc2aa;">Home</a> / Tickets</span></div>
+
+      <?php
+        if(isset($_GET['view'])){
+            require_once("includes/Tickets.php");
+            $tickets = new Tickets($core, $db);
+
+            $tickets->view($_GET['view']);
+        }else{
+            echo '
+
     <div id="content_center">
       <md-content id="content_center_top" layout="row" class="md-whiteframe-1dp layout-row">
-          <div layout="row" layout-align="center center" class="layout layout-row layout-align-center-center"> 
-              
+          <div layout="row" layout-align="center center" class="layout layout-row layout-align-center-center">
+
               <span id="content_center_top_setting" class="glyphicon glyphicon-cog"></span>
 
           </div>
@@ -98,104 +129,61 @@
       </md-content>
 
       <md-content style="border-bottom: 1px solid #D9DCDF;" id="content_center_subject" layout="row" class="md-whiteframe-1dp layout-row">
-          <div layout="row" layout-align="center center" class="layout layout-row layout-align-center-center"> 
+          <div layout="row" layout-align="center center" class="layout layout-row layout-align-center-center">
             <div class="inbox_subject" class="md-whiteframe-1dp layout-row">
-                        <div class="mails" id="inbox_subject2" layout="row">
-              <div id="container">
-                  <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
-            
-                  </md-checkbox>
-                  <span id="envelope2" class="glyphicon glyphicon-envelope envelope_transparent"></span>
-                    
-                  <div id="id">Ticket</div>
-
-                  <div id="subject">Subject</div>
-
-                  <div id="department">Department</div>
-                  
-                  <div id="priority">Priority</div>
-
-                  <div id="email">Email</div>
-
-                  <div id="status">Status</div>
-
-                  <div id="published">Published</div>
-                  
-                  <span id="mark2" class="glyphicon glyphicon-flag"></span>
-
-
-
-
-
-              </div>   
-          </div>
+                <div class="mails" id="inbox_subject2" layout="row">
+                  <div id="container">
+                      <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+                      </md-checkbox>
+                      <span id="envelope2" class="glyphicon glyphicon-envelope envelope_transparent"></span>
+                      <div id="id">Ticket</div>
+                      <div id="subject">Subject</div>
+                      <div id="department">Department</div>
+                      <div id="priority">Priority</div>
+                      <div id="email">Email</div>
+                      <div id="status">Status</div>
+                      <div id="published">Published</div>
+                      <span id="mark2" class="glyphicon glyphicon-flag"></span>
+                  </div>
+              </div>
             </div>
           </div>
       </md-content>
-        <md-content id="inbox" class="md-whiteframe-1dp">
-
-
-
-
-
-
-      <?php
-  $conn = mysqli_connect("localhost","root","root", "Ehelp");           
-    if (!$conn) {
-      die("Can not Connect:" .mysql_error());
-    }
-
-    $query = "SELECT * FROM Ticket" ; 
-    $result = mysqli_query($conn, $query);
-
-      
-      while ($roww = mysqli_fetch_array($result)) {
-
-        
-?>
-
-
-<?php echo '<a href="../Inbox/index.php?id=' . $roww ['id'] . '">'; ?> 
-          
-        
+    <md-content id="inbox" class="md-whiteframe-1dp">
+            ';
+            $result = $db->doquery("SELECT * FROM {{table}} WHERE user='".$user['id']."' LIMIT 0,20","tickets");
+            while($row = mysqli_fetch_array($result)){
+                echo '
+          <a href="?view=' . $row['id'] . '">
             <div class="mails" layout="row">
               <div id="container">
-                  <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
-            
-                  </md-checkbox>
+                  <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1"></md-checkbox>
                   <span id="envelope" class="glyphicon glyphicon-envelope"></span>
-                    
-                  <div id="id"><?php echo $roww["id"]; ?></div>
-
-                  <div id="subject"><?php echo $roww["subject"]; ?></div>
-
-                  <div id="department"><?php echo $roww["department"]; ?></div>
-                  
-                  <div id="priority"><?php echo $roww["priority"]; ?></div>
-
-                  <div id="email"><?php echo $roww["email"]; ?></div>
-
-                  <div id="status"><?php echo $roww["status"]; ?></div>
-
-                  <div id="published"><?php echo $roww["published"]; ?></div>
-                  
-
+                  <div id="id">'.$row["id"].'</div>
+                  <div id="subject">'.$row["subject"].'</div>
+                  <div id="department">'.$row["department"].'</div>
+                  <div id="priority">'.$row["priority"].'</div>
+                  <div id="email">'.$row["email"].'</div>
+                  <div id="status">'.$row["status"].'</div>
+                  <div id="published">'.$row["published"].'</div>
                   <md-button  class="md-icon-button" aria-label="More" ng-click="$mdOpenMenu($event)">
-        
-                  <span id="mark" class="glyphicon glyphicon-flag"></span>
+                    <span id="mark" class="glyphicon glyphicon-flag"></span>
                   </md-button>
+              </div>
+            </div>
+          </a>
+          ';
+            }
+            echo '
 
-
-
-              </div>   
-          </div>
-<?php echo "</a>";?>
-
-<?php }
-
+	</md-content>';
+        }
 
 ?>
 	</md-content>
+        <?php
+
+        ?>
 </div>
 </body>
 </html>
