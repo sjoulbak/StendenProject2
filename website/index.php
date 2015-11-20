@@ -147,7 +147,7 @@ function menuItems($items){
 	<div id="content"flex ng-view class="flex ng-scope">
     <div id="content_top"><h2>Tickets(<?php echo $user['tickets']; ?>)</h2><span><a href="#" style="color:#0cc2aa;">Home</a> / Tickets</span></div>
       <?php
-      echo $security->makePass("marijn", "marijn");
+//      echo $security->makePass("marijn", "marijn");
         if(isset($_GET['view'])){
 
             require_once("includes/Tickets.php");
