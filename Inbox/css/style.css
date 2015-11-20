@@ -1,0 +1,240 @@
+body{
+  -ms-user-select:none;
+
+  height: 100%;
+  width:100%;
+}
+
+#background{
+  background-size: cover;   
+}
+
+.container {
+  width: 100%;
+  padding-top: 60px;
+  padding-bottom: 100px;
+}
+a:hover{
+  text-decoration: none;
+}
+
+#profile{
+  background-color:#e8eaf6;
+  width: 100%;
+  height: 149px;
+  background-image: url("img/bg.png");
+  background-size: 256px 149px;
+}
+
+#profile_info{
+  padding: 15px;
+}
+
+#top_bar{
+  padding:8px;
+}
+
+#remove_ticket{
+width:115%;
+position: relative;
+right: 23px;
+background:none;
+border: none;
+}
+
+#more{
+  float:right;
+  width:20px;
+  margin-right: 18px;
+}
+
+#profiles{
+  float: right;
+}
+
+
+#menu_top{
+  padding: 15px;
+}
+
+#profile_picture{
+  height: 65px;
+  width: 65px;
+  background: white;
+  border-radius: 50px;
+   background-image: url('img/account.png');
+  background-size: 65px 65px;
+}
+#menu_knop{
+  width: 100%;
+  position: relative;
+  right: 8px;
+  text-align: left;
+  margin-top:-5px;
+  padding: 2px;
+}
+
+span.ng-scope{
+  text-transform: lowercase;
+}
+
+#content{
+  height:100%;
+  background: #F1F5F8;
+  padding: 25px;
+  padding-top: 25px;
+
+}
+
+#content_top{
+  width:100%;
+  height: 75px;
+
+}
+
+#content_center{
+  width:100%;
+  height: 577px;
+ 
+}
+
+#content_center_header{
+  height: 50px;
+}
+
+#content_center_top{
+  padding: 10px;
+
+}
+
+#envelope{
+  color: #E08933;
+}
+
+.mails{
+  border-bottom: 1px solid #D9DCDF;
+  background: #FEFEDE;
+
+}
+
+#id{
+  display: inline-block;
+  padding-left: 20px;
+  width:65px;
+}
+
+#inbox{
+  background:#F1F5F8;
+}
+
+#subject{
+  display: inline-block;
+  padding-left: 10px;
+  width:310px;
+}
+
+#department{
+  display: inline-block;
+  padding-left: 10px;
+  width:105px;
+
+  }
+
+#priority{
+  display: inline-block;
+  padding-left: 10px;
+  width:95px;
+}
+
+#email{
+  display: inline-block;
+  padding-left: 10px;
+  width:195px;
+
+}
+
+a{
+  color:black;
+}
+
+a:hover{
+  color:black;
+}
+#status{
+  display: inline-block;
+  width: 100px;
+  padding-left: 10px;
+  
+}
+
+#published{
+  display: inline-block;
+  width: 175px;
+  padding-left: 10px;
+}
+
+#mark{
+ 
+  width:75px;
+  color:green;
+
+    position: relative;
+    right: 12px;
+
+}
+
+#envelope2{
+  color: white;
+}
+
+#mark2{
+  color:white;
+}
+
+#username{
+  color:white;
+}
+
+#avatar{
+  height: 40px;
+  width:40px;
+  background: url("img/account.png");
+  background-size: 40px 40px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+#triangle_bottom{
+  color:white;
+  font-size: 11px;
+  position: relative;
+}
+
+#logo{
+  background: url("img/logo.png");
+  background-size: 50px 40px;
+  background-repeat: no-repeat;
+  height: 50px;
+  width:50px;
+  margin-top:10px;
+  margin-left:15px;
+}
+
+.inbox_subject{
+  padding: 20px;
+  padding-top:0px;
+}
+
+.menu li{
+  display: inline-block;
+  margin-top:11px;
+  color:white;
+  margin-right: -25px;
+}
+
+#menu_bar{
+  margin-left:-25px;
+
+}
+.menu_item:hover{
+  color:white;
+}
