@@ -34,7 +34,6 @@ a:hover{
   padding:8px;
 }
 
-
 #more{
   float:right;
   width:20px;
@@ -55,7 +54,7 @@ a:hover{
   width: 65px;
   background: white;
   border-radius: 50px;
-   background-image: url('../../website/css/img/account.png');
+   background-image: url('img/account.png');
   background-size: 65px 65px;
 }
 #menu_knop{
@@ -191,7 +190,7 @@ a:hover{
 #avatar{
   height: 40px;
   width:40px;
-  background: url("../../website/css/img/account.png");
+  background: url("img/account.png");
   background-size: 40px 40px;
   border-radius: 50%;
   margin-right: 8px;
@@ -230,4 +229,102 @@ a:hover{
 }
 .menu_item:hover{
   color:white;
+}
+
+
+
+
+
+
+
+
+
+#formblock{
+  display: table-cell;
+  background-color: white;
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 20px;
+  border-radius: 2px;
+  padding: 20px;
+}
+
+#QA{
+  width: 20%;
+  padding: 10px;
+  display: table-cell;
+}
+
+.form {
+  font-size: 14px;
+  position: relative;
+  margin-bottom: 0;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.form input,
+.form textarea {
+  position: relative;
+  padding-right: 0;
+  padding-left: 0;
+  border: none;
+  font-size: 1.5em;
+  resize: none;
+  width:98%;
+}
+.form label {
+  display: block;
+  position: relative;
+  margin: 0;
+  font-size: 12;
+  opacity: 0;
+}
+
+#selectmenu{
+  min-width: 200px;
+  background: none;
+  width: auto;
+  padding: 5px;
+  font-size: 1.5em;
+  border: 0;
+  margin-left: -6px;
+  left: 0px;
+  border-radius: 0;
+}
+
+select {
+  margin-top: 8px;
+  color:#a5a5a5;
+}
+
+#contactbutton{
+  padding: 10px 40px;
+  margin: 0px 10px 10px 0px;
+  border-radius: 3px;
+  font-size: 16px;
+  color: #FFF;
+  text-decoration: none;
+  border: 0px;
+  background-color: #0cc2aa;
+  border-bottom: 5px solid #09907e;
+}
+
+#stelvraag{
+  color: #0cc2aa;
+}
+
+#question{
+  width: 100%;
+  margin-left: -50px;
+  height: auto;
+  padding: 5px;
+  text-decoration: none;
+  background-color: #0cc2aa;
+  border-bottom: 1px solid black;
+}
+#answer{
+  width: 100%;
+  margin-left: -50px;
+  margin-top: 10px;
 }

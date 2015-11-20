@@ -67,5 +67,15 @@ class Core{
         ';
     }
 
+    public function isEmail($email){
+        $mail = explode('@', $email);
+
+        if(count($mail) == 2){
+            if(strlen($mail[1]) >= 4){
+                return null;
+            }
+        }
+        return "Email is niet juist.<br />";
+    }
 
 }

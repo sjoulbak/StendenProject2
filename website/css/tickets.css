@@ -1,0 +1,13 @@
+
+#remove_ticket{
+    width:115%;
+    position: relative;
+    right: 23px;
+    background:none;
+    border: none;
+}
+
+.inbox_subject{
+    padding: 20px;
+    padding-top:0px;
+}

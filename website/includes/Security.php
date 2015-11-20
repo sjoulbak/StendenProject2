@@ -36,7 +36,7 @@ class Security{
     }
     public function logout(){
 
-        unset($_SESSION['alfa-workshops']);
+        unset($_SESSION['ticket-system']);
         $this->core->loadPage("login.php");
     }
     public function checkLogin($user, $pass){
@@ -98,16 +98,6 @@ class Security{
 //        return null;
 //    }
 
-    public function isEmail($email){
-        $mail = explode('@', $email);
-
-        if(count($mail) == 2){
-            if(strlen($email[1]) >= 4){
-                return null;
-            }
-        }
-        return "Email is niet juist.";
-    }
     public function makePass($pass, $user){
         return md5($pass.$user);
     }

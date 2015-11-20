@@ -23,9 +23,17 @@ if($security->checksession()){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> Ticket system </title>
     <!-- JQUERY   -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.js"></script>
     <script src="js/jquery.validate.js"></script>
-    <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
-
+    <script>
+        window.onload = function() {
+            document.getElementById('toggleProfile').addEventListener('click', function () {
+                [].map.call(document.querySelectorAll('.profile'), function(el) {
+                    el.classList.toggle('profile--open');
+                });
+            });
+        };
+    </script>
     <!--Google Font - Work Sans-->
     <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,700' rel='stylesheet' type='text/css'>
 

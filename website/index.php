@@ -18,7 +18,34 @@ if(!$user){
 if(isset($_GET['logout'])){
     $security->logout();
 }
+
+
+
+function menuItems($items){
+
+    $menu = [
+        "home" => [
+            "text" => "Home",
+            "link" => "?",
+        ],
+        "tickets" => [
+            "text" => "Tickets",
+            "link" => "?",
+        ],
+        "newTicket" => [
+            "text" => "Nieuwe ticket",
+            "link" => "?newTicket",
+        ],
+    ];
+    for($i=0;$i<count($items);$i++){
+        echo '<li class=""><md-button class="menu_item" href="'.$menu[$items[$i]]['link'].'">'.$menu[$items[$i]]['text'].'</md-button></li>';
+    }
+}
+
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,8 +64,18 @@ if(isset($_GET['logout'])){
     <link href="css/owfont-regular.min.css" rel="stylesheet">
 
     <!-- STYLES  -->
-    <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://gitcdn.xyz/repo/angular/bower-material/v0.11.0/angular-material.css">
+    <link href="css/style.css" rel="stylesheet">
+
+
+    <?php
+
+
+        if(isset($_GET['view'])){
+            echo '<link href="css/tickets.css" rel="stylesheet">';
+        }
+    ?>
+
 
     <!-- ANGULAR -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
@@ -50,8 +87,7 @@ if(isset($_GET['logout'])){
 
     <script src="js/app.js"></script>
 
-    <!-- SCRIPTS  -->
-    <script type="text/javascript" src="js/script.js"></script>
+
 
 </head>
 
@@ -63,9 +99,17 @@ if(isset($_GET['logout'])){
       <div id="logo"></div>
       <div id="menu_bar">
         <ul class="menu">
-          <li class=""><md-button class="menu_item" href="?">Home</md-button></li>
-          <li class=""><md-button class="menu_item" href="?">Tickets</md-button></li>
-          <li class=""><md-button class="menu_item" href="?help">Help</md-button></li>
+            <?php
+                // home, tickets, newTickets
+                if($user['role'] == 1){
+                    menuItems(["newTicket"]);
+                }else{
+                    menuItems(["home","tickets","newTicket"]);
+                }
+            ?>
+
+<!--          <li class=""><md-button class="menu_item" href="?">Tickets</md-button></li>-->
+<!--            <li class=""><md-button class="menu_item" href="?help">Help</md-button></li>-->
         </ul>
       </div>
 		</div>
@@ -107,82 +151,34 @@ if(isset($_GET['logout'])){
 
       <?php
         if(isset($_GET['view'])){
+
             require_once("includes/Tickets.php");
-            $tickets = new Tickets($core, $db);
-
+            $tickets = new Tickets($core, $db, $user);
             $tickets->view($_GET['view']);
+        }elseif(isset($_GET['delete'])){
+
+            require_once("includes/Tickets.php");
+            $tickets = new Tickets($core, $db, $user);
+            $tickets->delete($_GET['delete']);
+            $tickets->getAll();
+
+        }elseif(isset($_GET['newTicket'])){
+
+            require_once("includes/Tickets.php");
+            $tickets = new Tickets($core, $db, $user);
+            $tickets->newTicket();
+
         }else{
-            echo '
 
-    <div id="content_center">
-      <md-content id="content_center_top" layout="row" class="md-whiteframe-1dp layout-row">
-          <div layout="row" layout-align="center center" class="layout layout-row layout-align-center-center">
-
-              <span id="content_center_top_setting" class="glyphicon glyphicon-cog"></span>
-
-          </div>
-          <div layout="row" layout-align="end center" flex class="flex layout layout-row layout-align-end-center">
-              <md-menu md-position-mode="target-right target">
-                asd
-              </md-menu>
-          </div>
-      </md-content>
-
-      <md-content style="border-bottom: 1px solid #D9DCDF;" id="content_center_subject" layout="row" class="md-whiteframe-1dp layout-row">
-          <div layout="row" layout-align="center center" class="layout layout-row layout-align-center-center">
-            <div class="inbox_subject" class="md-whiteframe-1dp layout-row">
-                <div class="mails" id="inbox_subject2" layout="row">
-                  <div id="container">
-                      <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
-                      </md-checkbox>
-                      <span id="envelope2" class="glyphicon glyphicon-envelope envelope_transparent"></span>
-                      <div id="id">Ticket</div>
-                      <div id="subject">Subject</div>
-                      <div id="department">Department</div>
-                      <div id="priority">Priority</div>
-                      <div id="email">Email</div>
-                      <div id="status">Status</div>
-                      <div id="published">Published</div>
-                      <span id="mark2" class="glyphicon glyphicon-flag"></span>
-                  </div>
-              </div>
-            </div>
-          </div>
-      </md-content>
-    <md-content id="inbox" class="md-whiteframe-1dp">
-            ';
-            $result = $db->doquery("SELECT * FROM {{table}} WHERE user='".$user['id']."' LIMIT 0,20","tickets");
-            while($row = mysqli_fetch_array($result)){
-                echo '
-          <a href="?view=' . $row['id'] . '">
-            <div class="mails" layout="row">
-              <div id="container">
-                  <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1"></md-checkbox>
-                  <span id="envelope" class="glyphicon glyphicon-envelope"></span>
-                  <div id="id">'.$row["id"].'</div>
-                  <div id="subject">'.$row["subject"].'</div>
-                  <div id="department">'.$row["department"].'</div>
-                  <div id="priority">'.$row["priority"].'</div>
-                  <div id="email">'.$row["email"].'</div>
-                  <div id="status">'.$row["status"].'</div>
-                  <div id="published">'.$row["published"].'</div>
-                  <md-button  class="md-icon-button" aria-label="More" ng-click="$mdOpenMenu($event)">
-                    <span id="mark" class="glyphicon glyphicon-flag"></span>
-                  </md-button>
-              </div>
-            </div>
-          </a>
-          ';
-            }
-            echo '
-
-	</md-content>';
+            require_once("includes/Tickets.php");
+            $tickets = new Tickets($core, $db, $user);
+            $tickets->getAll();
         }
 
 ?>
 	</md-content>
         <?php
-
+            $core->checkLoad();
         ?>
 </div>
 </body>
