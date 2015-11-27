@@ -176,7 +176,10 @@ class Tickets {
                 }
                 if($errors == 0){
                     $q = $this->db->doquery("INSERT INTO {{table}} SET subject='$subject', message='$description', department='$department', priority='$priority', email='$mail', status='1', published=NOW(), user='".$this->user['id']."'", "tickets");
-                    echo "Toegevoegd.<br />";
+                    echo '<script type="text/javascript">
+                               window.location = "index.php"
+                          </script>';
+
                 }
 
             }
