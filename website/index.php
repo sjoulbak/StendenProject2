@@ -93,7 +93,7 @@ function menuItems($items){
 <div id="background">
 <toolbar-top>
 	<md-card id="top_bar"layout="row" class="layout layout-row layout-fill md-default-theme" style=" height: 55px; opacity:0.9; background: #0cc2aa; ">
-		<div layout="row" layout-align="center center" class="layout layout-row layout-align-center-center">	
+		<div layout="row" layout-align="center center" class="layout layout-row layout-align-center-center">
       <div id="logo"></div>
       <div id="menu_bar">
         <ul class="menu">
@@ -112,7 +112,7 @@ function menuItems($items){
       </div>
 		</div>
 		<div layout="row" layout-align="end center" flex class="flex layout layout-row layout-align-end-center">
-			      
+
         <div id="avatar"></div>
             <div id="username">
 
@@ -127,9 +127,9 @@ function menuItems($items){
 
          <!-- Trigger element is a md-button with an icon -->
          <md-button id="more" class="md-icon-button" aria-label="More" ng-click="$mdOpenMenu($event)">
-              
+
 <span id="triangle_bottom" class="glyphicon glyphicon-triangle-bottom"></span>
-              
+
           </md-button>
 
           <md-menu-content >
@@ -146,6 +146,7 @@ function menuItems($items){
 	<!-- main content -->
 	<div id="content"flex ng-view class="flex ng-scope">
     <div id="content_top"><h2>Tickets(<?php echo $user['tickets']; ?>)</h2><span><a href="#" style="color:#0cc2aa;">Home</a> / Tickets</span></div>
+
       <?php
 //      echo $security->makePass("marijn", "marijn");
         if(isset($_GET['view'])){
@@ -153,6 +154,7 @@ function menuItems($items){
             require_once("includes/Tickets.php");
             $tickets = new Tickets($core, $db, $user);
             $tickets->view($_GET['view']);
+
         }elseif(isset($_GET['delete'])){
 
             require_once("includes/Tickets.php");
@@ -178,6 +180,7 @@ function menuItems($items){
         <?php
             $core->checkLoad();
         ?>
+
 </div>
 </body>
 </html>

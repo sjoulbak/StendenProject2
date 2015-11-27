@@ -37,6 +37,12 @@ class Database{
 
     }
 
+    // Functie die het nieuwe ID teruggeeft na een insert.
+    public function do_insert_query($query, $table) {
+      $this->doquery($query, $table);
+      return $this->mysqli->insert_id;
+    }
+
     public function esc_str($string){
         return $this->mysqli->real_escape_string($string);
     }

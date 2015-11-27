@@ -61,6 +61,7 @@ class Tickets {
 	    </md-content>
       </div>
         ';
+
     }
 
     public function getAll(){
@@ -175,9 +176,10 @@ class Tickets {
                     $errors++;
                 }
                 if($errors == 0){
-                    $q = $this->db->doquery("INSERT INTO {{table}} SET subject='$subject', message='$description', department='$department', priority='$priority', email='$mail', status='1', published=NOW(), user='".$this->user['id']."'", "tickets");
+                    $id = $this->db->do_insert_query("INSERT INTO {{table}} SET subject='$subject', message='$description', department='$department', priority='$priority', email='$mail', status='1', published=NOW(), user='".$this->user['id']."'", "tickets");
+
                     echo '<script type="text/javascript">
-                               window.location = "index.php"
+                               window.location = "index.php?view='.$id.'&flash=Ticket%20toegevoegd.";
                           </script>';
 
                 }
