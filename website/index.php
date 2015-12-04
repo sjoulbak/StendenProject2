@@ -49,8 +49,8 @@ function menuItems($items){
     <title> Ticket-system </title>
 
     <!-- JQUERY   -->
-    <script src="js/jquery.validate.js"></script>
     <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/jquery.validate.js"></script>
 
     <!-- BOOTSTRAP   -->
     <script src="js/bootstrap.min.js"></script>
@@ -157,6 +157,13 @@ function menuItems($items){
             $tickets = new Tickets($core, $db, $user);
             $tickets->delete($_GET['delete']);
             $tickets->getAll();
+
+        }elseif(isset($_GET['edit'])){
+
+            require_once("includes/Tickets.php");
+            $tickets = new Tickets($core, $db, $user);
+            $tickets->edit($_GET['edit']);
+//            $tickets->getAll();
 
         }elseif(isset($_GET['newTicket'])){
 

@@ -1,0 +1,473 @@
+/*
+
+    Green: #588F27;
+
+*/
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+html, body{
+    height: 100%;
+    width: 100%;
+    font-family: "Helvetica", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: #F3F4F8;
+}
+h1 {
+    font-weight: normal;
+    font-size: 30px;
+}
+a{
+     text-decoration: none;
+     color: #0cc2aa;
+ }
+a:hover{
+    text-decoration: none;
+    color: #0c9982;
+}
+
+header.main{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #24C8B2;
+    height: 70px;
+}
+    header.main .logo{
+        position: relative;
+        display: inline-block;
+        height: 50px;
+        margin: 10px 10px 10px 20px;
+    }
+    header.main ul.head-menu{
+        display: inline-block;
+        position: relative;
+        vertical-align: top;
+        height: 70px;
+    }
+
+        header.main ul.head-menu li{
+            display: inline-block;
+            list-style-type: none;
+            font-size: 1.2em;
+            position: relative;
+        }
+
+            header.main ul.head-menu li a{
+                display: inline-block;
+                padding: 0 20px;
+                height: 70px;
+                line-height: 70px;
+                text-decoration: none;
+                color: #FFF;
+            }
+                header.main ul.head-menu li a:before{
+                     content: "";
+                     position: absolute;
+                     left: 50%;
+                     top: 50%;
+                     width: 0;
+                     height: 0;
+                     background: rgba(255,255,255,0);
+                     transition: 500ms;
+                }
+                    header.main ul.head-menu li a:hover:before{
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(255,255,255,0.4);
+                        transition: 100ms;
+                    }
+    header.main .account{
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 70px;
+    }
+        header.main .account .account-img{
+            display: inline-block;
+            height: 50px;
+            width: 50px;
+            margin: 10px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+        }
+        header.main .account #acc-select {
+            display: inline-block;
+            vertical-align: top;
+        }
+            header.main .account #acc-select a.name{
+                display: inline-block;
+                vertical-align: top;
+                border-radius: 5px;
+                border: none;
+                padding: 5px 10px;
+                font-size: 16px;
+                margin: 21px;
+                margin-left: 11px;
+                color: #FFFFFF;
+                cursor: pointer;
+                text-align: center;
+            }
+            header.main .account #acc-select a.name:hover, header.main .account #acc-select.show a.name{
+                /*border: solid 1px #FFFFFF;*/
+                /*margin: 20px;*/
+                /*margin-left: 10px;*/
+                background: rgba(255, 255, 255, 0.3);
+
+            }
+        header.main .account #acc-select ul{
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            padding: 10px 0;
+            background: #FFFFFF;
+            box-shadow: 0 0 5px 0 #aaa;
+            text-align: left;
+            z-index: 9999;
+            -webkit-transform: scale(0,0);
+            -moz-transform: scale(0,0);
+            -ms-transform: scale(0,0);
+            -o-transform: scale(0,0);
+            transform: scale(0,0);
+            -webkit-transition: transform 500ms;
+            -moz-transition: transform 500ms;
+            -ms-transition: transform 500ms;
+            -o-transition: 500ms;
+            transition: 500ms;
+        }
+            header.main .account #acc-select ul li{
+                list-style-type: none;
+                position: relative;
+                cursor: pointer;
+            }
+            header.main .account #acc-select ul li a{
+                color: #000;
+                padding: 10px;
+                display: block;
+            }
+                header.main .account #acc-select ul li:before{
+                    content: "";
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    width: 0;
+                    height: 0;
+                    transition: 500ms;
+                }
+                header.main .account #acc-select ul li:hover:before{
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.1);
+                    transition: 200ms;
+                }
+            header.main .account #acc-select.show ul{
+                display: block;
+                -webkit-transform: scale(1,1);
+                -moz-transform: scale(1,1);
+                -ms-transform: scale(1,1);
+                -o-transform: scale(1,1);
+                transform: scale(1,1);
+
+            }
+section{
+    position: relative;
+    top: 70px;
+    width: 100%;
+    z-index: 5;
+}
+    section article{
+        padding: 20px;
+    }
+        section article h1{
+
+        }
+        section article .breadcrumb{
+
+        }
+        section article .panel{
+            margin-top: 20px;
+            width: 100%;
+            background: #FFFFFF;
+            -webkit-box-shadow:  0 0 3px #aaa;
+            -moz-box-shadow:  0 0 3px #aaa;
+            box-shadow:  0 0 3px #aaa;
+
+        }
+        section article .panel header{
+            height: 50px;
+        }
+        section article .panel .settings{
+            display: inline-block;
+            font-size: 16px;
+            padding: 4px 11px;
+            margin: 12px 30px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #555;
+        }
+        section article .panel .settings:hover{
+
+            /*padding: 3px 10px;*/
+            /*border: solid 1px #555;*/
+            color: #000;
+        }
+        section article .panel table{
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        section article .panel table tr{
+            border-top: solid 1px #CCC;
+            height: 40px;
+        }
+        section article .panel table tr.active{
+            background: #FEFEDE;
+        }
+            section article .panel table tr td:nth-child(1){
+                text-align: center;
+            }
+            section article .panel table tr th:nth-child(1){
+                width: 40px;
+
+            }
+            section article .panel table tr th:nth-child(2){
+                width: 100px;
+                text-align: left;
+            }
+            section article .panel table tr th:nth-child(3){
+                text-align: left;
+            }
+            section article .panel table tr th:nth-child(4){
+                width: 120px;
+                text-align: left;
+            }
+            section article .panel table tr th:nth-child(5){
+                width: 120px;
+                text-align: left;
+            }
+            section article .panel table tr th:nth-child(6){
+                text-align: left;
+            }
+            section article .panel table tr th:nth-child(7){
+                width: 100px;
+                text-align: left;
+            }
+            section article .panel table tr th:nth-child(8){
+                width: 200px;
+                text-align: left;
+            }
+
+section article .view-ticket header{
+    padding: 10px 20px;
+    border-bottom: solid 1px #DDD;
+    height: auto;
+}
+section article .view-ticket header .button{
+    margin: 10px 5px;
+}
+
+
+section article .view-ticket .button::before{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    -webkit-transition: 100ms;
+    -moz-transition: 100ms;
+    -ms-transition: 100ms;
+    -o-transition: 100ms;
+    transition: 100ms;
+    display: block;
+    z-index: -1;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    
+}
+section article .view-ticket .button{
+    position: relative;
+    border: none;
+    background: none;
+    padding: 6px 35px;
+    display: inline-block;
+    z-index: 1;
+    -webkit-transition: color 100ms;
+    -moz-transition: color 100ms;
+    -ms-transition: color 100ms;
+    -o-transition: color 100ms;
+    transition: color 100ms;
+    cursor: pointer;
+    margin: 5px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: #000;
+}
+section article .view-ticket .button:hover{
+    color: #000;
+}
+
+section article .view-ticket .button:hover::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #DDD;
+}
+
+
+
+section article .panel.view-ticket article{
+    padding: 10px;
+}
+
+
+section article .panel.view-ticket .info{
+    padding: 20px;
+    font-size: 14px;
+}
+section article .panel.view-ticket .info h2{
+    font-size: 1.8em;
+    padding:  0 0 10px 0 ;
+}
+section article .panel.view-ticket .message{
+    padding: 20px;
+    border-top: solid 1px #DDD;
+    background: #FEFEDE;
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+
+#formblock{
+    display: table-cell;
+    background-color: white;
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 2px;
+    padding: 20px;
+    top: 20px;
+}
+
+#QA{
+    width: 20%;
+    padding: 10px;
+    display: table-cell;
+    top: 20px;
+}
+
+.form {
+    font-size: 14px;
+    position: relative;
+    margin-bottom: 0;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.form input,
+.form textarea {
+    position: relative;
+    padding-right: 0;
+    padding-left: 0;
+    border: none;
+    font-size: 1.5em;
+    resize: none;
+    width:98%;
+}
+.form label {
+    display: block;
+    position: relative;
+    margin: 0;
+    font-size: 12;
+    opacity: 0;
+}
+
+.form select{
+    min-width: 200px;
+    background: none;
+    width: auto;
+    padding: 5px;
+    font-size: 1.5em;
+    border: 0;
+    margin-left: -6px;
+    left: 0px;
+    border-radius: 0;
+    margin-top: 8px;
+    color:#a5a5a5;
+}
+
+input.send[type='submit']{
+    padding: 10px 40px;
+    margin: 0px 10px 10px 0px;
+    border-radius: 3px;
+    font-size: 16px;
+    color: #FFF;
+    text-decoration: none;
+    border: 0px;
+    background-color: #0cc2aa;
+    border-bottom: 5px solid #09907e;
+}
+
+#stelvraag{
+    color: #0cc2aa;
+}
+
+.question{
+    width: 100%;
+    color: #fff;
+    margin-left: -10px;
+    height: auto;
+    padding: 5px;
+    text-decoration: none;
+    background-color: #0cc2aa;
+    border-bottom: 1px solid #018f7c;
+}
+.question a{
+    color: #000;
+}
+.answer{
+    width: 100%;
+    margin-left: -10px;
+    margin-top: 10px;
+}
+
+li.question{
+    text-decoration: none;
+    list-style: none;
+}
+
+ul.question{
+    text-decoration: none;
+    list-style: none;
+}
+
+a.question{
+    text-decoration: none;
+}
+.right{
+    position: absolute;
+    right: 15px;
+}

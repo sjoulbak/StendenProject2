@@ -32,7 +32,7 @@ if(isset($_GET['logout'])){
 <html>
 <head>
     <title>Ticket indienen</title>
-    <link rel="stylesheet" href="css/new_ticket.css"/>
+    <link rel="stylesheet" href="../noAngular/css/new_ticket.css"/>
 </head>
     <body>
         <div id="form-main">

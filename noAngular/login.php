@@ -24,7 +24,7 @@ if($security->checksession()){
     <title> Ticket system </title>
     <!-- JQUERY   -->
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.js"></script>
-    <script src="js/jquery.validate.js"></script>
+<!--    <script src="js/jquery.validate.js"></script>-->
     <script>
         window.onload = function() {
             document.getElementById('toggleProfile').addEventListener('click', function () {
