@@ -23,10 +23,6 @@ function menuItems($items){
 
     $menu = [
         "home" => [
-            "text" => "Home",
-            "link" => "?",
-        ],
-        "tickets" => [
             "text" => "Tickets",
             "link" => "?",
         ],
@@ -102,7 +98,7 @@ function menuItems($items){
                 if($user['role'] == 1){
                     menuItems(["newTicket"]);
                 }else{
-                    menuItems(["home","tickets","newTicket"]);
+                    menuItems(["home","newTicket"]);
                 }
             ?>
 
