@@ -106,13 +106,17 @@ class Tickets {
     <md-content id="inbox" class="md-whiteframe-1dp">
             ';
 
+
+
         $result = $this->db->doquery("SELECT * FROM {{table}} WHERE user='".$this->user['id']."' LIMIT 0,20","tickets");
+
+
         while($row = mysqli_fetch_array($result)){
             echo '
           <a href="?view=' . $row['id'] . '">
             <div class="mails" layout="row">
               <div id="container">
-                  <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1"></md-checkbox>
+                  <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1" class="checkBox"></md-checkbox>
                   <span id="envelope" class="glyphicon glyphicon-envelope"></span>
                   <div id="id">'.$row["id"].'</div>
                   <div id="subject">'.$row["subject"].'</div>
@@ -131,7 +135,9 @@ class Tickets {
         }
         echo '
 
-	</md-content>';
+	</md-content>
+
+	';
     }
     public function delete($id){
 

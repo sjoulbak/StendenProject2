@@ -55,7 +55,7 @@ a:hover{
   width: 65px;
   background: white;
   border-radius: 50px;
-   background-image: url('img/account.png');
+   background-image: url('../../website/css/img/account.png');
   background-size: 65px 65px;
 }
 #menu_knop{
@@ -191,7 +191,7 @@ a:hover{
 #avatar{
   height: 40px;
   width:40px;
-  background: url("img/account.png");
+  background: url("../../website/css/img/account.png");
   background-size: 40px 40px;
   border-radius: 50%;
   margin-right: 8px;
@@ -203,7 +203,7 @@ a:hover{
 }
 
 #logo{
-  background: url("img/logo.png");
+  background: url("../../website/css/img/logo.png");
   background-size: 50px 40px;
   background-repeat: no-repeat;
   height: 50px;
