@@ -111,11 +111,9 @@ class Tickets {
         // $result = $this->db->doquery("SELECT * FROM {{table}} WHERE user='".$this->user['id']."' LIMIT 0,20","tickets");
         if($this->user['role'] == 2){
           $result = $this->db->doquery("SELECT * FROM {{table}} ","tickets");
-          $row = mysqli_fetch_array($result);
         }
         else {
           $result = $this->db->doquery("SELECT * FROM {{table}} WHERE user='".$this->user["id"]."'","tickets");
-          $row = mysqli_fetch_array($result);
         }
 
         while($row = mysqli_fetch_array($result)){

@@ -94,14 +94,14 @@ if($security->checksession()){
                                     Login
                                 </md-button>
 
-<<<<<<< HEAD
+
 <!--                                <md-checkbox id="remember" ng-disabled="userForm.username.$error.required || userForm.password.$error.required " ng-model="data.cb1" aria-label="Checkbox 1">-->
 <!--                                    Remember-->
 <!---->
 <!--                                </md-checkbox>-->
-=======
+
                                 <md-checkbox id="remember" ng-disabled="userForm.username.$error.required || userForm.password.$error.required " ng-model="data.cb1" aria-label="Checkbox 1">
-                                    Remember
+
 
                                 </md-checkbox><br>
 
@@ -109,7 +109,6 @@ if($security->checksession()){
                                   <a href="./register.php">Register</a>
                                 </div>
 
->>>>>>> 3a0781073d43c0a7d1dc78a9ebfb453d905758be
                                 <input class="form-styling" type="hidden" name="remember" ng-model="remember" placeholder="{{ data.cb1 }}" />
                             </div>
                         </form>
