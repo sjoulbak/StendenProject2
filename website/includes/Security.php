@@ -53,50 +53,45 @@ class Security{
         }
         return null;
     }
-//    public function checkRegister($username, $firstname, $lastname, $password1, $password2){
-//        $email = $this->db->esc_str($email);
-//        $firstname = $this->db->esc_str($firstname);
-//        $lastname = $this->db->esc_str($lastname);
-//        $password1 = $this->db->esc_str($password1);
-//        $password2 = $this->db->esc_str($password2);
-//
-//
-//
-//        $query = $this->db->doquery("SELECT * FROM {{table}} WHERE email='$email'", "users");
-//
-//        if (mysqli_num_rows($query) > 0) {
-//            return 'Dit email adres is bij ons al geregistreerd.';
-//        }
-//
-//        $correctMail = $this->isEmail($email);
-//
-//        if($correctMail != null){
-//            return $correctMail;
-//        }
-//        $err = [];
-//        if(strlen($firstname) < 2){$err[] = "Voornaam is niet lang genoeg.";}
-//        if(strlen($lastname) < 2){$err[] = "Achternaam is niet lang genoeg.";}
-//        if(strlen($password1) < 2){$err[] = "Wachtwoord is niet lang genoeg.";}
-//        if($password1 != $password2){$err[] = "Wachtwoorden komen niet overeen.";}
-//
-//        if(count($err) != 0){
-//            $error = "";
-//            foreach($err as $val){
-//                $error .= $val."<br />";
-//            }
-//            return $error;
-//        }
-//
-//        $pass = $this->makePass($password1, $email);
-//
-//        $query = $this->db->doquery("INSERT INTO {{table}} SET email='$email', firstname='$firstname', lastname='$lastname', password='$pass' ","users");
-//
-//        $_SESSION['alfa-workshops'] = $email."//".$pass;
-//        $this->core->loadPage("index.php");
-//
-//
-//        return null;
-//    }
+   public function checkRegister($firstname, $lastname, $username, $password1, $password2){
+       $username = $this->db->esc_str($username);
+       $firstname = $this->db->esc_str($firstname);
+       $lastname = $this->db->esc_str($lastname);
+       $password1 = $this->db->esc_str($password1);
+       $password2 = $this->db->esc_str($password2);
+
+
+
+       $query = $this->db->doquery("SELECT * FROM {{table}} WHERE username='$username'", "users");
+
+       if (mysqli_num_rows($query) > 0) {
+           return 'Dit gebruikersnaam is bij ons al geregistreerd.';
+       }
+
+       $err = [];
+       if(strlen($firstname) < 2){$err[] = "Voornaam is niet lang genoeg.";}
+       if(strlen($lastname) < 2){$err[] = "Achternaam is niet lang genoeg.";}
+       if(strlen($password1) < 2){$err[] = "Wachtwoord is niet lang genoeg.";}
+       if($password1 != $password2){$err[] = "Wachtwoorden komen niet overeen.";}
+
+       if(count($err) != 0){
+           $error = "";
+           foreach($err as $val){
+               $error .= $val."<br />";
+           }
+           return $error;
+       }
+
+       $pass = $this->makePass($password1, $username);
+
+       $query = $this->db->doquery("INSERT INTO {{table}} SET username='$username', firstname='$firstname', lastname='$lastname', password='$pass', role=1 ","users");
+
+      //  $_SESSION['alfa-workshops'] = $username."//".$pass;
+      //  $this->core->loadPage("index.php");
+
+
+       return null;
+   }
 
     public function makePass($pass, $user){
         return md5($pass.$user);
