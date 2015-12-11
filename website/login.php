@@ -94,15 +94,8 @@ if($security->checksession()){
                                     Login
                                 </md-button>
 
-
-<!--                                <md-checkbox id="remember" ng-disabled="userForm.username.$error.required || userForm.password.$error.required " ng-model="data.cb1" aria-label="Checkbox 1">-->
-<!--                                    Remember-->
-<!---->
-<!--                                </md-checkbox>-->
-
                                 <md-checkbox id="remember" ng-disabled="userForm.username.$error.required || userForm.password.$error.required " ng-model="data.cb1" aria-label="Checkbox 1">
-
-
+                                    Remember
                                 </md-checkbox><br>
 
                                 <div class="register" style="left: 182.6px; position: absolute;">
