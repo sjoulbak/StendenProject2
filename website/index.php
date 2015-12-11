@@ -96,7 +96,7 @@ function menuItems($items){
             <?php
                 // home, tickets, newTickets
                 if($user['role'] == 1){
-                    menuItems(["newTicket"]);
+                    menuItems(["home","newTicket"]);
                 }else{
                     menuItems(["home","newTicket"]);
                 }
