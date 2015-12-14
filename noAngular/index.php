@@ -127,6 +127,12 @@ function menuItems($items){
                             $tickets = new Tickets($core, $db, $user);
                             $tickets->workingOn($_GET['working_on']);
 
+                        }elseif(isset($_GET['status'])){
+
+                            require_once("includes/Tickets.php");
+                            $tickets = new Tickets($core, $db, $user);
+                            $tickets->status($_GET['status']);
+
                         }elseif(isset($_GET['newTicket'])){
 
                             require_once("includes/Tickets.php");

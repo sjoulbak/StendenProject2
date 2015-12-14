@@ -39,21 +39,32 @@ class Tickets {
                         <li class="fa fa-pencil"></li>
                     </a>
             ';
-        if($row['working_on'] == $this->user['id']){
+        if($this->user['role'] > 0) {
+          if($row['working_on'] == $this->user['id']){
 
-            echo '
+              echo '
 
-                    <a class="button" href="?working_on='.$id.'">
-                        <li class="fa fa-upload"></li>
-                    </a>
-            ';
-        }else{
-            echo '
+                      <a class="button" href="?working_on='.$id.'">
+                          <li class="fa fa-upload"></li>
+                      </a>
+              ';
+          }else{
+              echo '
 
-                    <a class="button" href="?working_on='.$id.'">
-                        <li class="fa fa-download"></li>
-                    </a>
-            ';
+                      <a class="button" href="?working_on='.$id.'">
+                          <li class="fa fa-download"></li>
+                      </a>
+              ';
+          }
+        }
+        if($row['status'] == 0) {
+          echo '<a class="button" href="?status='.$id.'">
+                  <li class="fa fa-times"></li>
+                </a>';
+        } else {
+          echo '<a class="button" href="?status='.$id.'">
+                  <li class="fa fa-check"></li>
+                </a>';
         }
 
         echo '
@@ -169,6 +180,20 @@ class Tickets {
                 $this->db->doquery("UPDATE {{table}} SET working_on=NULL WHERE id='$id' ","tickets");
             }else{
                 $this->db->doquery("UPDATE {{table}} SET working_on='".$this->user['id']."' WHERE id='$id' ","tickets");
+            }
+        }
+        $this->core->loadPage("?view=$id");
+    }
+    public function status($id){
+
+        $r = $this->db->doquery("SELECT id,status FROM {{table}} WHERE id='$id'","tickets");
+
+        if(mysqli_num_rows($r) > 0){
+            $row = mysqli_fetch_array($r);
+            if($row['status'] == 0){
+                $this->db->doquery("UPDATE {{table}} SET status=1 WHERE id='$id' ","tickets");
+            }else{
+                $this->db->doquery("UPDATE {{table}} SET status=0 WHERE id='$id' ","tickets");
             }
         }
         $this->core->loadPage("?view=$id");
