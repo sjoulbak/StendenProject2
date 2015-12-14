@@ -17,6 +17,34 @@ if(!$user){
 if(isset($_GET['logout'])){
     $security->logout();
 }
+if(isset($_GET['deleteAll'])){
+    $items = explode(",",$_POST['items']);
+    foreach($items as $v){
+        if($user['role'] == 2){
+            $db->doquery("DELETE FROM {{table}} WHERE id='".$v."'","tickets");
+            echo true;
+        }elseif($user['role'] == 1){
+            $q = $db->doquery("SELECT working_on FROM {{table}} WHERE id='".$v."' AND working_on='".$user['id']."'","tickets");
+            if(mysqli_num_rows($q) > 0){
+                $db->doquery("DELETE FROM {{table}} WHERE id='".$v."'","tickets");
+                echo true;
+            }else{
+                echo "Assign ticket first to you.";
+            }
+        }else{
+            $q = $db->doquery("SELECT user FROM {{table}} WHERE id='".$v."' AND user='".$user['id']."'","tickets");
+            if(mysqli_num_rows($q) > 0){
+                $db->doquery("DELETE FROM {{table}} WHERE id='".$v."'","tickets");
+                echo true;
+            }else{
+                echo "Not you're ticket.";
+            }
+        }
+    }
+
+    $core->checkLoad();
+    die();
+}
 
 function menuItems($items){
 
@@ -139,6 +167,8 @@ function menuItems($items){
         function changeCheckAll(a){
             var classes = a.getAttribute("class");
             var allChecks = document.getElementsByClassName("checkBox");
+
+
             if(classes.indexOf("fa-square-o") < 0){
                 for(var i=0;i < allChecks.length;i++){
                     allChecks[i].setAttribute("class", allChecks[i].getAttribute("class").replace("fa-check-square-o","fa-square-o") );
@@ -149,6 +179,7 @@ function menuItems($items){
                 }
 
             }
+            changeCheck(a);
             needMenuForCheck();
         }
         var deleteAllButton = document.getElementById("deleteAll");
@@ -161,8 +192,62 @@ function menuItems($items){
                 }
             }
             if(check_menu){
-
+                deleteAllButton.style.display = "inline-block";
+            }else{
+                deleteAllButton.style.display = "none";
             }
+        }
+        deleteAllButton.onclick = function(){
+
+            var allChecks = document.getElementsByClassName("checkBox");
+            check_menu = false;
+            var delItems = "";
+            var items = {};
+            for(var i=0;i < allChecks.length;i++){
+                if(allChecks[i].getAttribute("class").indexOf("fa-square-o") < 0){
+//                    removeEl(allChecks[i].parentNode.parentNode);
+                    items[i] = allChecks[i].parentNode.parentNode;
+                    delItems += allChecks[i].parentNode.parentNode.dataset.id+",";
+//                    console.log(allChecks[i]);
+                }else{
+//                    console.log(allChecks[i]);
+                }
+            }
+//            console.log(delItems);
+            for(var item in items){
+                removeEl(items[item]);
+            }
+            if(delItems.length > 0){
+                ajax("POST","?deleteAll", {
+                    items: delItems
+                });
+            }
+            if(check_menu){
+                deleteAllButton.style.display = "inline-block";
+            }else{
+                deleteAllButton.style.display = "none";
+            }
+        };
+        function ajax(method, url, data=false){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange=function() {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    return xhttp.responseText;
+                }
+            };
+            xhttp.open(method, url, true);
+            if(data != false){
+                var d = new FormData();
+                for(var key in data) {
+                    d.append(key, data[key]);
+                }
+                xhttp.send(d);
+            }else{
+                xhttp.send();
+            }
+        }
+        function removeEl(el){
+            el.parentNode.removeChild(el);
         }
 
     </script>

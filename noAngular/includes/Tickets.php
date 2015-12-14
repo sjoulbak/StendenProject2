@@ -93,19 +93,15 @@ class Tickets {
             <span class="breadcrumb">
                 Home / Tickets
             </span>
-            <div class="panel view-ticket">
+            <div class="panel">
                 <header>
-                    <div class="settings">
-                        <i class="fa fa-cog"></i>
-                        <i class="fa fa-caret-down"></i>
-                    </div>
                     <a class="button" id="deleteAll">
                         <li class="fa fa-trash-o"></li>
                     </a>
                 </header>
                 <table>
                     <tr>
-                        <th><i class="fa fa-square-o checkBox" onclick="changeCheckAll(this)" style="cursor: pointer;"></i></th>
+                        <th><i class="fa fa-square-o checkBoxAll" onclick="changeCheckAll(this)" style="cursor: pointer;"></i></th>
                         <th>Ticket</th>
                         <th>Subject</th>
                         <th>Department</th>
@@ -122,7 +118,7 @@ class Tickets {
 
         while($row = mysqli_fetch_array($result)){
             echo '
-            <tr class="active">
+            <tr class="active" data-id="'.$row["id"].'">
                 <td><i class="fa fa-square-o checkBox" onclick="changeCheck(this)" style="cursor: pointer;"></i></td>
                     <td>'.$row["id"].'</td>
                     <td>'.$row["subject"].'</td>
