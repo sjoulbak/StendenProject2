@@ -84,7 +84,7 @@ class Security{
 
         $pass = $this->makePass($password1, $username);
 
-        $query = $this->db->doquery("INSERT INTO {{table}} SET username='$username', firstname='$firstname', lastname='$lastname', password='$pass', role=1 ","users");
+        $query = $this->db->doquery("INSERT INTO {{table}} SET username='$username', firstname='$firstname', lastname='$lastname', password='$pass', role=0 ","users");
 
        //  $_SESSION['alfa-workshops'] = $username."//".$pass;
        //  $this->core->loadPage("index.php");
