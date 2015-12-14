@@ -24,7 +24,7 @@ if($security->checksession()){
     <title> Ticket system </title>
     <!-- JQUERY   -->
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.js"></script>
-<!--    <script src="js/jquery.validate.js"></script>-->
+    <script src="js/jquery.validate.js"></script>
     <script>
         window.onload = function() {
             document.getElementById('toggleProfile').addEventListener('click', function () {
@@ -71,33 +71,51 @@ if($security->checksession()){
                     <div class="profile__fields">
                         <form id="ajax" class="form-signin" action=" " method="post" name="userForm">
                             <?php
-                                if(isset($_POST['username']) && isset($_POST['password'])){
-                                    $errors = $security->checkLogin($_POST['username'], $_POST['password']);
+                                if(isset($_POST['name']) && isset($_POST['lastname']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['confirmpassword'])){
+                                    $errors = $security->checkRegister($_POST['name'], $_POST['lastname'], $_POST['username'], $_POST['password'], $_POST['confirmpassword']);
                                     if($errors != null){
                                         echo $errors;
+                                    } else {
+                                      $security->checkLogin($_POST['username'], $_POST['password']);
                                     }
                                 }
                             ?>
                             <md-input-container style = "width:225px;">
-                                <label type="text" for="username">Username</label>
+                                <label type="text" for="name">Naam</label>
+                                <input id="#name" class="form-styling" type="text" name="name" ng-model="name" required/>
+                            </md-input-container>
+                            <md-input-container style = "width:225px;">
+                                <label type="text" for="lastname">Achternaam</label>
+                                <input id="#lastname" class="form-styling" type="text" name="lastname" ng-model="lastname" required/>
+                            </md-input-container>
+                            <md-input-container style = "width:225px;">
+                                <label type="text" for="username">Gebruikersnaam</label>
                                 <input id="#username" class="form-styling" type="text" name="username" ng-model="username" required/>
                             </md-input-container>
                             <md-input-container style = "width:225px;">
-                                <label type="password" for="password">Password</label>
+                                <label type="password" for="password">Wachtwoord</label>
                                 <input id="#password" class="form-styling" type="password" name="password" ng-model="password" required/>
+                            </md-input-container>
+                            <md-input-container style = "width:225px;">
+                                <label type="confirmpassword" for="confirmpassword">Nogmaals Wachtwoord</label>
+                                <input id="#confirmpassword" class="form-styling" type="password" name="confirmpassword" ng-model="confirmpassword" required/>
                             </md-input-container>
 
                             <div id="row_login" layout="row" layout-align="center center">
 
 
-                                <md-button   type="submit" ng-disabled="userForm.username.$error.required || userForm.password.$error.required " class="md-raised circular-progress-button md-warn" >
-                                    Login
+                                <md-button   type="submit" ng-disabled="userForm.name.$error.required || userForm.lastname.$error.required || userForm.username.$error.required || userForm.password.$error.required || userForm.confirmpassword.$error.required" class="md-raised circular-progress-button md-warn" >
+                                    Register
                                 </md-button>
 
-                                  <div class="register">
-                                    <a href="./register.php">Register</a>
-                                  </div>
+                                <!-- <md-checkbox id="remember" ng-disabled="userForm.name.$error.required || userForm.lastname.$error.required || userForm.username.$error.required || userForm.password.$error.required || userForm.confirmpassword.$error.required" ng-model="data.cb1" aria-label="Checkbox 1">
+                                    Remember
 
+                                </md-checkbox><br> -->
+
+                                <div class="login">
+                                  <a href="./login.php">Login</a>
+                                </div>
                                 <input class="form-styling" type="hidden" name="remember" ng-model="remember" placeholder="{{ data.cb1 }}" />
                             </div>
                         </form>

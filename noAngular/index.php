@@ -67,7 +67,7 @@ function menuItems($items){
             <div class="account-img" style="background-image: url('images/women.jpg');"></div>
 <!--            <img src="" class="account-img" />-->
             <div id="acc-select">
-                <a class="name">Alwin Kroesen <i class="fa fa-caret-down"></i></a>
+                <a class="name"><?php echo $user['firstname']." ".$user['lastname']; ?> <i class="fa fa-caret-down"></i></a>
                 <ul>
                     <li><a href="#item1">Account informatie</a></li>
                     <li><a href="#item5">Instellingen</a></li>

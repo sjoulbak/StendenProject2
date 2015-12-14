@@ -13,7 +13,7 @@ class Database{
 
         "server"        => "localhost",	// MySQL server naam.
         "user"          => "root",		// MySQL gebruikersnaam.
-        "pass"          => "",			// MySQL wachtwoord.
+        "pass"          => "root",			// MySQL wachtwoord.
         "name"          => "school",	// MySQL database naam.
         "prefix"        => "ts");	    // Eerste deel van tabellen. ts = ticket-system
 
