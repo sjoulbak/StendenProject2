@@ -55,12 +55,7 @@ function menuItems($items){
         <img src="images/logo.jpg" class="logo" />
         <ul class="head-menu">
             <?php
-            // home, tickets, newTickets
-                if($user['role'] == 1){
-                    menuItems(["newTicket"]);
-                }else{
-                    menuItems(["home","newTicket"]);
-                }
+                menuItems(["home","newTicket"]);
             ?>
         </ul>
         <div class="account">
@@ -78,12 +73,7 @@ function menuItems($items){
     </header>
     <section>
         <article>
-            <h1>Tickets(9)</h1>
-            <span class="breadcrumb">
-                <a href="#home">Home</a> / Tickets
-            </span>
                     <?php
-                    //      echo $security->makePass("marijn", "marijn");
                         if(isset($_GET['view'])){
 
                             require_once("includes/Tickets.php");
@@ -133,14 +123,18 @@ function menuItems($items){
             document.getElementById("acc-select").setAttribute("class", accountClass);
             account_show_menu = !account_show_menu;
         };
+
+        var check_menu = false;
         function changeCheck(a){
             var classes = a.getAttribute("class");
             if(classes.indexOf("fa-square-o") < 0){
                 classes = classes.replace("fa-check-square-o","fa-square-o");
             }else{
+                check_menu = true;
                 classes = classes.replace("fa-square-o","fa-check-square-o");
             }
             a.setAttribute("class", classes);
+            needMenuForCheck();
         }
         function changeCheckAll(a){
             var classes = a.getAttribute("class");
@@ -155,7 +149,22 @@ function menuItems($items){
                 }
 
             }
+            needMenuForCheck();
         }
+        var deleteAllButton = document.getElementById("deleteAll");
+        function needMenuForCheck(){
+            var allChecks = document.getElementsByClassName("checkBox");
+            check_menu = false;
+            for(var i=0;i < allChecks.length;i++){
+                if(allChecks[i].getAttribute("class").indexOf("fa-square-o") < 0){
+                    check_menu = true;
+                }
+            }
+            if(check_menu){
+
+            }
+        }
+
     </script>
     <?php
         $core->checkLoad();
