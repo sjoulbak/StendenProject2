@@ -152,7 +152,7 @@ header.main{
                 padding: 10px;
                 display: block;
             }
-                header.main .account #acc-select ul li:before{
+                header.main .account #acc-select ul li a:before{
                     content: "";
                     position: absolute;
                     left: 50%;
@@ -161,7 +161,7 @@ header.main{
                     height: 0;
                     transition: 500ms;
                 }
-                header.main .account #acc-select ul li:hover:before{
+                header.main .account #acc-select ul li:hover a:before{
                     left: 0;
                     top: 0;
                     width: 100%;
