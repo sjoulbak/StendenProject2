@@ -29,6 +29,10 @@ class Tickets {
         echo '
 
 
+            <h1>Ticket</h1>
+            <span class="breadcrumb">
+                Home / <a href="?">Tickets</a> / view
+            </span>
             <div class="panel view-ticket">
                 <header>
                     <a class="button" href="?edit='.$id.'">
@@ -72,14 +76,32 @@ class Tickets {
 
     public function getAll(){
 
+        if($this->user['role'] == 2){
+            $result = $this->db->doquery("SELECT * FROM {{table}} LIMIT 0,20","tickets");
+            $nums = $this->db->doquery("SELECT user FROM {{table}} LIMIT 0,1000","tickets");
+        }elseif($this->user['role'] == 1){
+            $result = $this->db->doquery("SELECT * FROM {{table}} WHERE working_on='".$this->user['id']."' OR working_on=NULL LIMIT 0,20","tickets");
+            $nums = $this->db->doquery("SELECT user FROM {{table}} WHERE working_on='".$this->user['id']."' OR working_on=NULL LIMIT 0,1000","tickets");
+        }else{
+
+            $result = $this->db->doquery("SELECT * FROM {{table}} WHERE user='".$this->user['id']."' LIMIT 0,20","tickets");
+            $nums = $this->db->doquery("SELECT user FROM {{table}} WHERE user='".$this->user['id']."' LIMIT 0,1000","tickets");
+        }
         echo '
 
-            <div class="panel">
+            <h1>Tickets('.mysqli_num_rows($nums).')</h1>
+            <span class="breadcrumb">
+                Home / Tickets
+            </span>
+            <div class="panel view-ticket">
                 <header>
                     <div class="settings">
                         <i class="fa fa-cog"></i>
                         <i class="fa fa-caret-down"></i>
                     </div>
+                    <a class="button" id="deleteAll">
+                        <li class="fa fa-trash-o"></li>
+                    </a>
                 </header>
                 <table>
                     <tr>
@@ -96,14 +118,6 @@ class Tickets {
             ';
 
 
-        if($this->user['role'] == 2){
-            $result = $this->db->doquery("SELECT * FROM {{table}} LIMIT 0,20","tickets");
-        }elseif($this->user['role'] == 1){
-            $result = $this->db->doquery("SELECT * FROM {{table}} WHERE working_on='".$this->user['id']."' OR working_on=NULL LIMIT 0,20","tickets");
-        }else{
-
-            $result = $this->db->doquery("SELECT * FROM {{table}} WHERE user='".$this->user['id']."' LIMIT 0,20","tickets");
-        }
 
 
         while($row = mysqli_fetch_array($result)){
