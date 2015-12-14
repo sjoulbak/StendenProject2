@@ -257,7 +257,7 @@ class Tickets {
                 }
                 if($errors == 0){
                     $id = $this->db->do_insert_query("INSERT INTO {{table}} SET subject='$subject', message='$description', department='$department', priority='$priority', email='$mail', status='1', published=NOW(), user='".$this->user['id']."'", "tickets");
-                    $this->core->loadPage("index.php?view='.$id.'&flash=Ticket%20toegevoegd.");
+                    $this->core->loadPage('index.php?view='.$id.'&flash=Ticket%20toegevoegd.');
 //                    echo '<script type="text/javascript">
 //                               window.location = "";
 //                          </script>';

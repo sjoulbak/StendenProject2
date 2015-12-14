@@ -71,6 +71,7 @@ function menuItems($items){
                 <ul>
                     <li><a href="#item1">Account informatie</a></li>
                     <li><a href="#item5">Instellingen</a></li>
+                    <li><a href="?logout">Uitloggen</a></li>
                 </ul>
             </div>
         </div>
