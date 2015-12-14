@@ -80,8 +80,8 @@ class Tickets {
             $result = $this->db->doquery("SELECT * FROM {{table}} LIMIT 0,20","tickets");
             $nums = $this->db->doquery("SELECT user FROM {{table}} LIMIT 0,1000","tickets");
         }elseif($this->user['role'] == 1){
-            $result = $this->db->doquery("SELECT * FROM {{table}} WHERE working_on='".$this->user['id']."' OR working_on=NULL LIMIT 0,20","tickets");
-            $nums = $this->db->doquery("SELECT user FROM {{table}} WHERE working_on='".$this->user['id']."' OR working_on=NULL LIMIT 0,1000","tickets");
+            $result = $this->db->doquery("SELECT * FROM {{table}} WHERE working_on='".$this->user['id']."' OR working_on IS NULL LIMIT 0,20","tickets");
+            $nums = $this->db->doquery("SELECT user FROM {{table}} WHERE working_on='".$this->user['id']."' OR working_on IS NULL LIMIT 0,1000","tickets");
         }else{
 
             $result = $this->db->doquery("SELECT * FROM {{table}} WHERE user='".$this->user['id']."' LIMIT 0,20","tickets");
@@ -107,7 +107,7 @@ class Tickets {
                         <th>Department</th>
                         <th>Priority</th>
                         <th>Email</th>
-                        <th>Status</th>
+                        <th>Working On</th>
                         <th>Published</th>
                         <th></th>
                     </tr>
@@ -117,15 +117,28 @@ class Tickets {
 
 
         while($row = mysqli_fetch_array($result)){
+
+            $result2 = $this->db->doquery("SELECT * FROM {{table}} WHERE id='".$row['working_on']."'","users");
+            if (mysqli_num_rows($result2) > 0) {
+              if ($row2 = mysqli_fetch_array($result2)) {
+                $row["working_on"] = $row2['firstname']." ".$row2['lastname'];
+              }
+            } else {
+              $row['working_on'] = "Nog niemand";
+            }
+            if ($row['status'] == 1) {
+              echo '<tr class="active" data-id="'.$row["id"].'">';
+            } else {
+              echo '<tr data-id="'.$row["id"].'">';
+            }
             echo '
-            <tr class="active" data-id="'.$row["id"].'">
                 <td><i class="fa fa-square-o checkBox" onclick="changeCheck(this)" style="cursor: pointer;"></i></td>
                     <td>'.$row["id"].'</td>
                     <td>'.$row["subject"].'</td>
                     <td>'.$row["department"].'</td>
                     <td>'.$row["priority"].'</td>
                     <td>'.$row["email"].'</td>
-                    <td>'.$row["status"].'</td>
+                    <td>'.$row["working_on"].'</td>
                     <td>'.$row["published"].'</td>
                     <td><a href="?view=' . $row['id'] . '" class="fa fa-eye"></a></td>
                 <td></td>
