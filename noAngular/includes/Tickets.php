@@ -66,11 +66,22 @@ class Tickets {
                   <li class="fa fa-check"></li>
                 </a>';
         }
+        if($row['working_on'] != NULL){
+          $result3 = $this->db->doquery("SELECT * FROM {{table}} WHERE id='".$row['working_on']."'","users");
+          if (mysqli_num_rows($result3) > 0) {
+            if ($row2 = mysqli_fetch_array($result3)) {
+              echo '<div style="float:right; margin:15px;">'.$row2["firstname"]." ".$row2["lastname"].' is momenteel bezig met deze ticket.</div>';
+            }
+          } else {
+            echo '<div style="float:right; margin:15px;">Er is nog niemand bezig met deze ticket.</div>';
+          }
 
+        }
         echo '
                     <a class="button" href="?delete='.$id.'">
                         <li class="fa fa-trash-o"></li>
                     </a>
+
                 </header>
                 <article class="info">
                     <h2 style="font-weight:400;">'.$row["subject"].'</h3>
