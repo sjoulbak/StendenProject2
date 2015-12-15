@@ -268,17 +268,20 @@ section{
                 text-align: left;
             }
 
-section article .view-ticket header{
+section article header{
     padding: 10px 20px;
     border-bottom: solid 1px #DDD;
-    height: auto;
+    height: 50px;
 }
-section article .view-ticket header .button{
+section article header .button{
     margin: 10px 5px;
 }
+section article header .button#deleteAll{
+    display: none;
+}
 
 
-section article .view-ticket .button::before{
+section article .button::before{
     content: '';
     position: absolute;
     width: 0;
@@ -297,7 +300,7 @@ section article .view-ticket .button::before{
     border-radius: 3px;
     
 }
-section article .view-ticket .button{
+section article .button{
     position: relative;
     border: none;
     background: none;
@@ -316,11 +319,11 @@ section article .view-ticket .button{
     border-radius: 3px;
     color: #000;
 }
-section article .view-ticket .button:hover{
+section article .button:hover{
     color: #000;
 }
 
-section article .view-ticket .button:hover::before{
+section article .button:hover::before{
     content: '';
     position: absolute;
     width: 100%;
