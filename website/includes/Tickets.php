@@ -32,6 +32,7 @@ class Tickets {
           <div layout="row" layout-align="center center" class="layout layout-row layout-align-center-center">
             <md-button href="mailto:'.$row["email"].'"><span class="glyphicon glyphicon-pencil"></span></md-button>
             <md-button><span class="glyphicon glyphicon-flag"></span></md-button>
+            <md-button onclick="changeStatus">Afgerond</md-button>
             <md-button onclick="window.open(\'?delete='.$id.'\',\'_top\')"><span class="glyphicon glyphicon-trash"></span></md-button>
           </div>
           <div layout="row" layout-align="end center" flex class="flex layout layout-row layout-align-end-center">
@@ -63,6 +64,8 @@ class Tickets {
         ';
 
     }
+
+
 
     public function getAll(){
 
@@ -138,7 +141,7 @@ class Tickets {
           </a>
           ';
         }
-        echo '
+        '
 
 	</md-content>
 
@@ -151,6 +154,7 @@ class Tickets {
             $this->db->doquery("DELETE FROM {{table}} WHERE id='$id' ","tickets");
         }
     }
+
     public function newTicket(){
         echo '
 
